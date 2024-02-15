@@ -34,7 +34,6 @@ Generative AI has revolutionized Natural Language Processing by enabling machine
 #### 2c. Decoder only Architecture  
 - In the Decoder-only architecture, the model consists of only a decoder, which is trained to predict the next token in a sequence given the previous tokens. 
 - The main contrast between Decoder-only and Encoder-Decoder architectures lies in how they handle input information. In Decoder-only models, there's no separate encoder to summarize input data. Instead, the decoder indirectly encodes this information within its hidden state as it generates output step by step.
-  ![image](https://www.practicalai.io/wp-content/uploads/2023/02/bert.png)
 - Suitable for Text completion, Text generation, Translation, Question-Answering, Generating image captions, etc.
 - Example models using this architecture are:
     - [Generative Pre-Training models](https://s3-us-west-2.amazonaws.com/openai-assets/research-covers/language-unsupervised/language_understanding_paper.pdf) also called GPT models such as GPT-3, ChatGPT and GPT-J.
