@@ -18,6 +18,17 @@ Generative AI has revolutionized Natural Language Processing by enabling machine
     - Longformer: [The Long-Document Transformer](https://arxiv.org/pdf/2004.05150)
 
 #### 2b. Encoder only Architecture  
+- It only has the encoder part of the original transformer architecture.
+- It is used when only encoding the input sequence is required and the decoder is not necessary.
+- Here the input sequence is encoded into a fixed-length representation and then used as input to a classifier or a regressor to make a prediction.
+- These models have a pre-trained general-purpose encoder but will require fine-tuning of the final classifier or regressor.
+- ![image](https://www.practicalai.io/wp-content/uploads/2023/02/bert.png)
+- Cannot generate text( only understand the text).
+- Suitable for Text classification, Sentiment analysis, Named entity recognition, etc.
+- Example models using this architecture are:
+    - [BERT](https://arxiv.org/abs/1810.04805)
+    - [DistilBERT](https://arxiv.org/abs/1910.01108)
+    - [RoBERTa](https://arxiv.org/abs/1907.11692)
 
 
 
