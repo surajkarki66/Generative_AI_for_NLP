@@ -1,9 +1,9 @@
 import torch.nn as nn
 
-from feed_forward import FeedForwardBlock
-from residual_connection import ResidualConnection
-from multihead_attention_block import MultiHeadAttentionBlock
-from layer_normalization import LayerNormalization
+from modules.feed_forward import FeedForwardBlock
+from modules.residual_connection import ResidualConnection
+from modules.multihead_attention_block import MultiHeadAttentionBlock
+from modules.layer_normalization import LayerNormalization
 
 class DecoderBlock(nn.Module):
 
