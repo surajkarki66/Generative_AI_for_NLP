@@ -1,63 +1,62 @@
-import json
-import operator
-
-
 """
 These tools are simple Python functions that perform specific tasks.
-Here’s an example of a basic calculator and a string reverser:
+Here’s an example of a news, a string capitalizer and a string reverser:
 """
 
-def basic_calculator(input_str):
-    """
-    Perform a numeric operation on two numbers based on the input string.
+import requests
 
-    Parameters:
-    input_str (str): A JSON string representing a dictionary with keys 'num1', 'num2', and 'operation'. Example: '{"num1": 5, "num2": 3, "operation": "add"}' or "{'num1': 67869, 'num2': 9030393, 'operation': 'divide'}"
+def fetch_trending_news():
+    """
+    Fetch and return trending news headlines using the News API.
 
     Returns:
-    str: The formatted result of the operation.
-
-    Raises:
-    Exception: If an error occurs during the operation (e.g., division by zero).
-    ValueError: If an unsupported operation is requested or input is invalid.
+    str: A formatted string containing trending news headlines.
     """
-    # Clean and parse the input string
-    try:
-        input_dict = json.loads(input_str)
-        num1 = input_dict['num1']
-        num2 = input_dict['num2']
-        operation = input_dict['operation']
-    except (json.JSONDecodeError, KeyError) as e:
-        return str(e), "Invalid input format. Please provide a valid JSON string."
-
-    # Define the supported operations
-    operations = {
-        'add': operator.add,
-        'subtract': operator.sub,
-        'multiply': operator.mul,
-        'divide': operator.truediv,
-        'floor_divide': operator.floordiv,
-        'modulus': operator.mod,
-        'power': operator.pow,
-        'lt': operator.lt,
-        'le': operator.le,
-        'eq': operator.eq,
-        'ne': operator.ne,
-        'ge': operator.ge,
-        'gt': operator.gt
+    # Define the URL and parameters for the News API request
+    url = "https://newsapi.org/v2/top-headlines"
+    params = {
+        "country": "us",  # Fetches top headlines from the United States
+        "apiKey": "a38396c0b3254e3cb4c178f10a892e1c"
     }
 
-    # Check if the operation is supported
-    if operation in operations:
-        try:
-            # Perform the operation
-            result = operations[operation](num1, num2)
-            result_formatted = f"\n\nThe answer is: {result}.\nCalculated with basic_calculator."
-            return result_formatted
-        except Exception as e:
-            return str(e), "\n\nError during operation execution."
-    else:
-        return "\n\nUnsupported operation. Please provide a valid operation."
+    try:
+        # Send a request to the News API
+        response = requests.get(url, params=params)
+        response.raise_for_status()  # Raise an error if the request failed
+        data = response.json()
+
+        # Extract the top 10 headlines
+        articles = data.get("articles", [])[:10]
+        trending_news = [article["title"] for article in articles]
+
+        # Format the trending news into a single string
+        news_string = "\n".join(f"{i+1}. {headline}" for i, headline in enumerate(trending_news))
+        formatted_news = f"Trending News Headlines:\n{news_string}\n\n.Executed using the fetch_trending_news function."
+
+        # print(f"DEBUG: formatted_news: {formatted_news}")
+        return formatted_news
+
+    except requests.exceptions.RequestException as e:
+        return f"Error fetching trending news: {e}"
+
+
+def capitalize_words(input_string):
+    """
+    Capitalize the first letter of each word in the given string.
+
+    Parameters:
+    input_string (str): The string with words to be capitalized.
+
+    Returns:
+    str: The string with each word capitalized.
+    """
+    # Capitalize each word
+    capitalized_string = input_string.title()
+
+    capitalized_string = f"The capitalized string is: {capitalized_string}\n\n.Executed using the capitalize_words function."
+    # print(f"DEBUG: capitalized_string: {capitalized_string}")
+    return capitalized_string
+
 
 def reverse_string(input_string):
     """
