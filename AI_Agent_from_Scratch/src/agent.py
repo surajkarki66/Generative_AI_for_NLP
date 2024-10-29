@@ -96,7 +96,7 @@ class Agent:
         tool_input = agent_response_dict.get("tool_input")
 
         for tool in self.tools:
-            if tool.name == tool_choice:
+            if tool.__name__ == tool_choice:
                 response = tool(tool_input)
 
                 print(colored(response, 'cyan'))
