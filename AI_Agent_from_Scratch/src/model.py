@@ -50,6 +50,7 @@ class OllamaModel:
             request_response_json = request_response.json()
             print(request_response_json)
             response = request_response_json['response']
+            print(response)
             response_dict = json.loads(response)
 
             return response_dict

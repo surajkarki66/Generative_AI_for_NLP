@@ -23,12 +23,7 @@ def basic_calculator(input_str):
     """
     # Clean and parse the input string
     try:
-        # Replace single quotes with double quotes
-        input_str_clean = input_str.replace("'", "\"")
-        # Remove any extraneous characters such as trailing quotes
-        input_str_clean = input_str_clean.strip().strip("\"")
-
-        input_dict = json.loads(input_str_clean)
+        input_dict = json.loads(input_str)
         num1 = input_dict['num1']
         num2 = input_dict['num2']
         operation = input_dict['operation']
