@@ -5,7 +5,7 @@ Here’s an example of a news, a string capitalizer and a string reverser:
 
 import requests
 
-def fetch_trending_news():
+def fetch_trending_news(input):
     """
     Fetch and return trending news headlines using the News API.
 

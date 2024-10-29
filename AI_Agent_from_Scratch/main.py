@@ -1,12 +1,12 @@
 
 from src.agent import Agent
 from src.model import OllamaModel
-from src.tools import basic_calculator, reverse_string
+from src.tools import capitalize_words, reverse_string, fetch_trending_news
 
 
 if __name__ == "__main__":
 
-    tools = [basic_calculator, reverse_string]
+    tools = [capitalize_words, reverse_string, fetch_trending_news]
     
     model_service = OllamaModel
     model_name = "llama2"
